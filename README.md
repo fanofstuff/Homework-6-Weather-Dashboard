@@ -8,11 +8,11 @@ According to the user story that came bundled with this project, the intent of t
 
 ## Screenshots
 
-![example of basic webpage functionality](./Assets/Images/example_of_functionality.png)
+![example of basic webpage functionality](./assets/example_of_functionality.png)
 
-![example of weather display functionality](./Assets/Images/more_functionality.png)
+![example of weather display functionality](./assets/more_functionality.png)
 
-![example of fully functional jQuery and Javascript](./Assets/Images/code-example.png)
+![example of fully functional jQuery and Javascript](./assets/code-example.png)
 
 ## Features
 
