@@ -17,7 +17,7 @@ $(document).ready(function() {
       method: "GET"
     }).then(function(response) {
       var name = response.name;
-      var date = moment().format("dddd, MMMM Do, YYYY");
+      var date = moment().format("MM/DD/YYYY");
       var temp = response.main.temp;
       var humidity = response.main.humidity;
       var windSpeed = response.wind.speed;
@@ -44,19 +44,41 @@ $(document).ready(function() {
   }
 
   function findFutureWeather() {
-    // var city = $("#city-input")
-    //   .val()
-    //   .trim();
-    // var queryURL =
-    //   "http://api.openweathermap.org/data/2.5/forecast?q=" +
-    //   city +
-    //   "&units=imperial&appid=e1eb6c55373004adbe9f3bca057c7ee4";
-    // $.ajax({
-    //   url: queryURL,
-    //   method: "GET"
-    // }).then(function(response) {
-    //   console.log(response);
-    // });
+    var city = $("#city-input")
+      .val()
+      .trim();
+    var queryURL =
+      "http://api.openweathermap.org/data/2.5/forecast?q=" +
+      city +
+      "&units=imperial&appid=e1eb6c55373004adbe9f3bca057c7ee4";
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
+     $("#forecast-title").text("5-Day Forecast: ")
+     $("#forecast-list").empty();
+     for (i=1; i<6; i++) {
+       var futureWeather = $("<div>");
+       var weatherBlock = $("<div>"); 
+       var futureDate = $("<h4>"); 
+       var futureRain = $("<p>"); 
+       var futureTemp = $("<p>"); 
+       var futureHumidity = $("<p>");
+       futureWeather.addClass("col");
+       weatherBlock.addClass("bg-primary text-light"); 
+       futureDate.text("(" + moment().add(i,'days').format("MM/DD/YYYY") + ")"); 
+       futureRain.text("Weather: " + response.list[-1 + 8*i].weather[0].main)
+       futureTemp.text("Temperature: " + response.list[-1 + 8*i].main.temp + " °F")
+       futureHumidity.text("Humidity: " + response.list[-1 + 8*i].main.humidity + "%")
+       $("#forecast-list").append(futureWeather);
+       (futureWeather).append(weatherBlock); 
+       (weatherBlock).append(futureDate); 
+       (weatherBlock).append(futureRain); 
+       (weatherBlock).append(futureTemp); 
+       (weatherBlock).append(futureHumidity); 
+     }
+    });
   }
   function displayCurrentWeather() {
     var city = $(this).attr("data-name");
@@ -70,7 +92,7 @@ $(document).ready(function() {
       method: "GET"
     }).then(function(response) {
       var name = response.name;
-      var date = moment().format("dddd, MMMM Do, YYYY");
+      var date = moment().format("MM/DD/YYYY");
       var temp = response.main.temp;
       var humidity = response.main.humidity;
       var windSpeed = response.wind.speed;
@@ -108,6 +130,27 @@ $(document).ready(function() {
       method: "GET"
     }).then(function(response) {
       console.log(response);
+      $("#forecast-list").empty();
+      for (i=1; i<6; i++) {
+        var futureWeather = $("<div>");
+        var weatherBlock = $("<div>"); 
+        var futureDate = $("<h4>"); 
+        var futureRain = $("<p>"); 
+        var futureTemp = $("<p>"); 
+        var futureHumidity = $("<p>");
+        futureWeather.addClass("col");
+        weatherBlock.addClass("bg-primary text-light"); 
+        futureDate.text("(" + moment().add(i,'days').format("MM/DD/YYYY") + ")"); 
+        futureRain.text("Weather: " + response.list[-1 + 8*i].weather[0].main)
+        futureTemp.text("Temperature: " + response.list[-1 + 8*i].main.temp + " °F")
+        futureHumidity.text("Humidity: " + response.list[-1 + 8*i].main.humidity + "%")
+        $("#forecast-list").append(futureWeather);
+        (futureWeather).append(weatherBlock); 
+        (weatherBlock).append(futureDate); 
+        (weatherBlock).append(futureRain); 
+        (weatherBlock).append(futureTemp); 
+        (weatherBlock).append(futureHumidity); 
+      }
     });
   }
 
