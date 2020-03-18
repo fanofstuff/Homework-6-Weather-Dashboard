@@ -9,7 +9,7 @@ $(document).ready(function() {
       .trim();
 
     var queryURL =
-      "http://api.openweathermap.org/data/2.5/weather?q=" +
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
       city +
       "&units=imperial&appid=e1eb6c55373004adbe9f3bca057c7ee4";
 
@@ -30,7 +30,7 @@ $(document).ready(function() {
       $("#current-wind-speed").text("Wind Speed: " + windSpeed + " MPH");
 
       var UVURL =
-        "http://api.openweathermap.org/data/2.5/uvi?appid=e1eb6c55373004adbe9f3bca057c7ee4&lat=" +
+        "https://api.openweathermap.org/data/2.5/uvi?appid=e1eb6c55373004adbe9f3bca057c7ee4&lat=" +
         lat +
         "&lon=" +
         lon;
@@ -49,7 +49,7 @@ $(document).ready(function() {
       .val()
       .trim();
     var queryURL =
-      "http://api.openweathermap.org/data/2.5/forecast?q=" +
+      "https://api.openweathermap.org/data/2.5/forecast?q=" +
       city +
       "&units=imperial&appid=e1eb6c55373004adbe9f3bca057c7ee4";
     $.ajax({
@@ -96,7 +96,7 @@ $(document).ready(function() {
   function displayCurrentWeather() {
     var city = $(this).attr("data-name");
     var queryURL =
-      "http://api.openweathermap.org/data/2.5/weather?q=" +
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
       city +
       "&units=imperial&appid=e1eb6c55373004adbe9f3bca057c7ee4";
 
@@ -117,7 +117,7 @@ $(document).ready(function() {
       $("#current-wind-speed").text("Wind Speed: " + windSpeed + " MPH");
 
       var UVURL =
-        "http://api.openweathermap.org/data/2.5/uvi?appid=e1eb6c55373004adbe9f3bca057c7ee4&lat=" +
+        "https://api.openweathermap.org/data/2.5/uvi?appid=e1eb6c55373004adbe9f3bca057c7ee4&lat=" +
         lat +
         "&lon=" +
         lon;
@@ -134,7 +134,7 @@ $(document).ready(function() {
   function displayFutureWeather() {
     var city = $(this).attr("data-name");
     var queryURL =
-      "http://api.openweathermap.org/data/2.5/forecast?q=" +
+      "https://api.openweathermap.org/data/2.5/forecast?q=" +
       city +
       "&units=imperial&appid=e1eb6c55373004adbe9f3bca057c7ee4";
 
