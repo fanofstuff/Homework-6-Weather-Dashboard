@@ -12,7 +12,7 @@ According to the user story that came bundled with this project, the intent of t
 
 ![example of weather display functionality](./assets/more_functionality.png)
 
-![example of fully functional jQuery and Javascript](./assets/code-example.png)
+![example of fully functional jQuery and Javascript](./assets/code_example.png)
 
 ## Features
 
