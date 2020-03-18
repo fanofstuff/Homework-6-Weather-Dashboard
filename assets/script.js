@@ -4,35 +4,67 @@ $(document).ready(function() {
   function displayCurrentWeather() {
     var city = $(this).attr("data-name");
     var queryURL =
-      "api.openweathermap.org/data/2.5/weather?q=" +
+      "http://api.openweathermap.org/data/2.5/weather?q=" +
       city +
-      "&apiid=e1eb6c55373004adbe9f3bca057c7ee4";
+      "&appid=e1eb6c55373004adbe9f3bca057c7ee4";
 
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function(response) {
-        console.log(response); 
+      console.log(response);
     });
-    console.log(city); 
-    console.log(this); 
+  }
+
+  function findCurrentWeather() {
+    var city = $("#city-input")
+      .val()
+      .trim();
+
+    var queryURL =
+      "http://api.openweathermap.org/data/2.5/weather?q=" +
+      city +
+      "&appid=e1eb6c55373004adbe9f3bca057c7ee4";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
+    });
   }
 
   function displayFutureWeather() {
     var city = $(this).attr("data-name");
     var queryURL =
-      "api.openweathermap.org/data/2.5/forecast?q=" +
+      "http://api.openweathermap.org/data/2.5/forecast?q=" +
       city +
-      "&apiid=e1eb6c55373004adbe9f3bca057c7ee4";
+      "&appid=e1eb6c55373004adbe9f3bca057c7ee4";
 
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function(response) {
-        console.log(response); 
+      console.log(response);
     });
-    console.log(city); 
-    console.log(this);
+  }
+
+  function findFutureWeather() {
+    var city = $("#city-input")
+      .val()
+      .trim();
+
+    var queryURL =
+      "http://api.openweathermap.org/data/2.5/forecast?q=" +
+      city +
+      "&appid=e1eb6c55373004adbe9f3bca057c7ee4";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
+    });
   }
   function cityList() {
     $("#city-list").empty();
@@ -53,15 +85,14 @@ $(document).ready(function() {
       .trim();
 
     searchedCities.push(city);
-    console.log(searchedCities);
 
     cityList();
-    displayCurrentWeather(); 
-    displayFutureWeather(); 
+    findCurrentWeather();
+    findFutureWeather();
   });
 
-  $(document).on("click", ".city", displayCurrentWeather); 
-  $(document).on("click", ".city", displayFutureWeather); 
+  $(document).on("click", ".city", displayCurrentWeather);
+  $(document).on("click", ".city", displayFutureWeather);
 
   cityList();
 });
