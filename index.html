@@ -18,23 +18,52 @@
     <h1>Weather Dashboard</h1>
   </nav>
   <div class="container-fluid">
-    <div class="col-3 bg-light">
+    <div class="col-3 bg-light float-left ml-n3">
       <h4>Search for a City</h4>
       <div class="input-group mb-3">
-        <input
-          type="text"
-          class="form-control" id="city-input"
-        />
+        <input type="text" class="form-control" id="city-input" />
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" id="search-button">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="search-button"
+          >
             Search
           </button>
         </div>
       </div>
       <ul class="list-group" id="city-list"></ul>
     </div>
-    <div class="col-9">
-      <div class="row"></div>
+    <div class="col-9 float-right p-2">
+      <div class="row">
+        <div class="col" id="border-adder">
+          <div class="row">
+            <div class="col my-4">
+              <h2 id="city-title"></h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p id="current-temperature"></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p id="current-humidity"></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p id="current-wind-speed"></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p id="current-UV-index"></p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="row"></div>
     </div>
   </div>
@@ -43,5 +72,6 @@
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"
   ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="assets/script.js"></script>
 </body>

@@ -1,22 +1,8 @@
 $(document).ready(function() {
   var searchedCities = [];
 
-  function displayCurrentWeather() {
-    var city = $(this).attr("data-name");
-    var queryURL =
-      "http://api.openweathermap.org/data/2.5/weather?q=" +
-      city +
-      "&appid=e1eb6c55373004adbe9f3bca057c7ee4";
-
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function(response) {
-      console.log(response);
-    });
-  }
-
   function findCurrentWeather() {
+    $("#border-adder").addClass("border");
     var city = $("#city-input")
       .val()
       .trim();
@@ -24,13 +10,89 @@ $(document).ready(function() {
     var queryURL =
       "http://api.openweathermap.org/data/2.5/weather?q=" +
       city +
-      "&appid=e1eb6c55373004adbe9f3bca057c7ee4";
+      "&units=imperial&appid=e1eb6c55373004adbe9f3bca057c7ee4";
 
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function(response) {
-      console.log(response);
+      var name = response.name;
+      var date = moment().format("dddd, MMMM Do, YYYY");
+      var temp = response.main.temp;
+      var humidity = response.main.humidity;
+      var windSpeed = response.wind.speed;
+      var lat = response.coord.lat;
+      var lon = response.coord.lon;
+      $("#city-title").text(name + " (" + date + ")");
+      $("#current-temperature").text("Temperature: " + temp + " °F");
+      $("#current-humidity").text("Humidity: " + humidity + "%");
+      $("#current-wind-speed").text("Wind Speed: " + windSpeed + " MPH");
+
+      var UVURL =
+        "http://api.openweathermap.org/data/2.5/uvi?appid=e1eb6c55373004adbe9f3bca057c7ee4&lat=" +
+        lat +
+        "&lon=" +
+        lon;
+      $.ajax({
+        url: UVURL,
+        method: "GET"
+      }).then(function(response) {
+        var UV = response.value;
+        $("#current-UV-index").text("UV Index: " + UV);
+      });
+    });
+  }
+
+  function findFutureWeather() {
+    // var city = $("#city-input")
+    //   .val()
+    //   .trim();
+    // var queryURL =
+    //   "http://api.openweathermap.org/data/2.5/forecast?q=" +
+    //   city +
+    //   "&units=imperial&appid=e1eb6c55373004adbe9f3bca057c7ee4";
+    // $.ajax({
+    //   url: queryURL,
+    //   method: "GET"
+    // }).then(function(response) {
+    //   console.log(response);
+    // });
+  }
+  function displayCurrentWeather() {
+    var city = $(this).attr("data-name");
+    var queryURL =
+      "http://api.openweathermap.org/data/2.5/weather?q=" +
+      city +
+      "&units=imperial&appid=e1eb6c55373004adbe9f3bca057c7ee4";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      var name = response.name;
+      var date = moment().format("dddd, MMMM Do, YYYY");
+      var temp = response.main.temp;
+      var humidity = response.main.humidity;
+      var windSpeed = response.wind.speed;
+      var lat = response.coord.lat;
+      var lon = response.coord.lon;
+      $("#city-title").text(name + " (" + date + ")");
+      $("#current-temperature").text("Temperature: " + temp + " °F");
+      $("#current-humidity").text("Humidity: " + humidity + "%");
+      $("#current-wind-speed").text("Wind Speed: " + windSpeed + " MPH");
+
+      var UVURL =
+        "http://api.openweathermap.org/data/2.5/uvi?appid=e1eb6c55373004adbe9f3bca057c7ee4&lat=" +
+        lat +
+        "&lon=" +
+        lon;
+      $.ajax({
+        url: UVURL,
+        method: "GET"
+      }).then(function(response) {
+        var UV = response.value;
+        $("#current-UV-index").text("UV Index: " + UV);
+      });
     });
   }
 
@@ -39,7 +101,7 @@ $(document).ready(function() {
     var queryURL =
       "http://api.openweathermap.org/data/2.5/forecast?q=" +
       city +
-      "&appid=e1eb6c55373004adbe9f3bca057c7ee4";
+      "&units=imperial&appid=e1eb6c55373004adbe9f3bca057c7ee4";
 
     $.ajax({
       url: queryURL,
@@ -49,23 +111,6 @@ $(document).ready(function() {
     });
   }
 
-  function findFutureWeather() {
-    var city = $("#city-input")
-      .val()
-      .trim();
-
-    var queryURL =
-      "http://api.openweathermap.org/data/2.5/forecast?q=" +
-      city +
-      "&appid=e1eb6c55373004adbe9f3bca057c7ee4";
-
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function(response) {
-      console.log(response);
-    });
-  }
   function cityList() {
     $("#city-list").empty();
 
