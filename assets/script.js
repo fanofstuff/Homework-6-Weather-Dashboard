@@ -15,6 +15,7 @@ $(document).ready(function() {
         console.log(response); 
     });
     console.log(city); 
+    console.log(this); 
   }
 
   function displayFutureWeather() {
@@ -31,14 +32,14 @@ $(document).ready(function() {
         console.log(response); 
     });
     console.log(city); 
+    console.log(this);
   }
   function cityList() {
     $("#city-list").empty();
 
     for (i = 0; i < searchedCities.length; i++) {
       var savedCities = $("<button>");
-      savedCities.addClass("city");
-      savedCities.addClass("list-group-item");
+      savedCities.addClass("list-group-item button city");
       savedCities.attr("data-name", searchedCities[i]);
       savedCities.text(searchedCities[i]);
       $("#city-list").append(savedCities);
@@ -59,11 +60,8 @@ $(document).ready(function() {
     displayFutureWeather(); 
   });
 
-  $(".city").on("click", function(event){ 
-      event.preventDefault(); 
-      displayCurrentWeather(); 
-      displayFutureWeather();   
-  })
+  $(document).on("click", ".city", displayCurrentWeather); 
+  $(document).on("click", ".city", displayFutureWeather); 
 
   cityList();
 });
